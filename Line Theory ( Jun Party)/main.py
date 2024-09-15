@@ -4,30 +4,35 @@ import matplotlib.pyplot as plt
 
 
 total = 1000
-mu = total*0.1
 
-hour = 3 
+hour = 3
 minutes = hour*60
+segundos = minutes*60
+time = list(range(0, minutes+1))
+
+def dist_normal(mu, std, t):
+    f1= 1/(std * (2*np.pi)**(1/2))
+    norm = []
+
+    for i in t:
+        norm.append(f1* np.exp(-0.5 * ((i-mu)/std)**2 ))
+    
+    return norm
+
+def line(arrive, server):
+    
+    wait_time = []
+    len_line = []
+
+    for i in arrive:
+        
 
 
+distr = dist_normal(mu = minutes/2 , std = 30 ,t = time)
 
-distr = np.random.normal(mu,minutes)
+distr = [ int(i * total) for i in distr]
+print(distr)
 
-current_sum = np.sum(distr)
-scale = total/current_sum
-
-distr_final = distr*scale
-distr_final = np.round(distr_final).astype(int)
-
-print(distr_final.sum(), distr_final[:20])
-
-
-
-count, bins, ignored = plt.hist(x , 14 , density= True)
-plt.show()
-
-print(x.sum())
-
-# hour = 3
+    
 
 

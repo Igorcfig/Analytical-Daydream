@@ -1,30 +1,27 @@
-import numpy as np
+def normal_dist(x, mean, sd):
+    prob_density = (np.pi*sd) * np.exp(-0.5*((x-mean)/sd)**2)
+    return prob_density
 
-# Parameters
-total_sum = 10000  # Desired total sum
-n = 10000  # Number of samples
+mean = 180 /2 
+sd = 60
+x = 180
 
-# Start with a Poisson lambda (mean) value
-lambda_value = 5
+# result = normal_dist(x, mean, sd)
+# print(result)
 
-# Generate Poisson-distributed random numbers
-poisson_data = np.random.poisson(lambda_value, n)
+time = list(range(0, 180+1)) 
 
-# Calculate the current sum of the generated values
-current_sum = np.sum(poisson_data)
+z_score = (x -  mean)/ sd
 
-# Calculate the scaling factor
-scaling_factor = total_sum / current_sum
+prob = np.exp(-0.5* z_score**2)/(2*np.pi)
+print(z_score)
+print(prob)
 
-# Scale the data to match the desired total sum
-scaled_data = poisson_data * scaling_factor
+# value = []
+# for i in time:
+#     value.append(normal_dist(i,mean,sd)) 
 
-# Round to ensure integers, as Poisson distribution values are integers
-scaled_data = np.round(scaled_data).astype(int)
+# print(value)
 
-# Verify the result
-new_sum = np.sum(scaled_data)
-print(f"Sum of scaled data: {new_sum}")
+# print(min(value))
 
-# Optionally, print the first few values
-print(scaled_data[:10])
