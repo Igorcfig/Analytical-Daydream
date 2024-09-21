@@ -39,9 +39,9 @@ class Queue:
         i=1
         validation = False
 
-        # print(i)
+        
         while validation == False:
-            # print()
+           
             if i <= (len(distr)-1):
                 if len_line[i-1] <= 0:
                     add =  distr[i]
